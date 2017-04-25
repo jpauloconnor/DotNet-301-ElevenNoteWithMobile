@@ -90,6 +90,9 @@ namespace ElevenNote.Web.Controllers
             return View(model);
         }
 
+
+
+
         public ActionResult Delete(int id)
         {
             var svc = CreateNoteService();
