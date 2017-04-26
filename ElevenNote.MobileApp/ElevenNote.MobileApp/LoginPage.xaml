@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ElevenNote.MobileApp.LoginPage">
+
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Margin="10">
+        <Image Source="elevenfiftylogo.png" />
+        <Label Text="Welcome to Eleven Note!" FontSize="Large" Margin="0,5,0,20" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+        <Label Text="Username:" Margin="0,0,0,2" />
+        <Entry Placeholder="email@domain.com" x:Name="fldUsername" Keyboard="Email" Margin="0,0,0,5" />
+        <Label Text="Password:" Margin="0,0,0,2" />
+        <Entry Placeholder="enter password" x:Name="fldPassword" IsPassword="True" Margin="0,0,0,5" />
+        <Button x:Name="btnLogin" Text="Log In" Margin="0,0,0,40" Clicked="BtnLogin_OnClicked"></Button>
+        <ActivityIndicator x:Name="pleaseWait" IsRunning="False" />
+    </StackLayout>
+
+    
+</ContentPage>

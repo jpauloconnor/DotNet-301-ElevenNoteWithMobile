@@ -29,7 +29,7 @@ namespace ElevenNote.API.Controllers
             var noteService = new NoteService(Guid.Parse(User.Identity.GetUserId()));
             var note = noteService.GetNoteById(id);
             if (note == null) return NotFound();
-            return Ok();
+            return Ok(note);
         }
 
         public IHttpActionResult Post(NoteCreate model)
