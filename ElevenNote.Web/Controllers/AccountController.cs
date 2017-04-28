@@ -26,6 +26,8 @@ namespace ElevenNote.Web.Controllers
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
