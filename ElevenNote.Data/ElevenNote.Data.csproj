@@ -54,29 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201704121737166_InitialCreate.cs" />
-    <Compile Include="Migrations\201704121737166_InitialCreate.Designer.cs">
-      <DependentUpon>201704121737166_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704131922033_AddIsStarred.cs" />
-    <Compile Include="Migrations\201704131922033_AddIsStarred.Designer.cs">
-      <DependentUpon>201704131922033_AddIsStarred.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704121737166_InitialCreate.resx">
-      <DependentUpon>201704121737166_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704131922033_AddIsStarred.resx">
-      <DependentUpon>201704131922033_AddIsStarred.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
