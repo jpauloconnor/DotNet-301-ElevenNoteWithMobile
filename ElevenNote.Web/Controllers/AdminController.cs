@@ -314,18 +314,18 @@ namespace ElevenNote.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         #region public ActionResult EditUser(ExpandedUser paramExpandedUserDTO)
-        public ActionResult EditUser(ExpandedUser paramExpandedUserDTO)
+        public ActionResult EditUser(ExpandedUser expUser)
         {
             try
             {
-                if (paramExpandedUserDTO == null)
+                if (expUser == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                ExpandedUser objExpandedUserDTO = UpdateUser(paramExpandedUserDTO);
+                ExpandedUser objExpandedUser = UpdateUser(expUser);
 
-                if (objExpandedUserDTO == null)
+                if (objExpandedUser == null)
                 {
                     return HttpNotFound();
                 }
@@ -335,7 +335,7 @@ namespace ElevenNote.Web.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, "Error: " + ex);
-                return View("EditUser", GetUser(paramExpandedUserDTO.UserName));
+                return View("EditUser", GetUser(expUser.UserName));
             }
         }
         #endregion
@@ -504,13 +504,11 @@ namespace ElevenNote.Web.Controllers
         }
         #endregion
 
-        #region private ExpandedUser UpdateUser(ExpandedUserDTO exdUser)
-        private ExpandedUser UpdateDTOUser(ExpandedUser expUser)
+        #region private ExpandedUser UpdateUser(ExpandedUser expUser)
+        private ExpandedUser UpdateUser(ExpandedUser expUser)
         {
-            ApplicationUser result =
-                UserManager.FindByName(expUser.UserName);
+            ApplicationUser result = UserManager.FindByName(expUser.UserName);
 
-            // If we could not find the user, throw an exception
             if (result == null)
             {
                 throw new Exception("Could not find the User");
@@ -518,23 +516,18 @@ namespace ElevenNote.Web.Controllers
 
             result.Email = expUser.Email;
 
-            // Lets check if the account needs to be unlocked
             if (UserManager.IsLockedOut(result.Id))
             {
-                // Unlock user
                 UserManager.ResetAccessFailedCountAsync(result.Id);
             }
 
             UserManager.Update(result);
 
-            // Was a password sent across?
             if (!string.IsNullOrEmpty(expUser.Password))
             {
-                // Remove current password
                 var removePassword = UserManager.RemovePassword(result.Id);
                 if (removePassword.Succeeded)
                 {
-                    // Add new password
                     var AddPassword =
                         UserManager.AddPassword(
                             result.Id,
@@ -551,6 +544,5 @@ namespace ElevenNote.Web.Controllers
             return expUser;
         }
         #endregion
-
     }
 }

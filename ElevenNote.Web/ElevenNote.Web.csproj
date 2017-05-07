@@ -296,6 +296,7 @@
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Admin\AddRole.cshtml" />
     <Content Include="Views\Admin\EditRoles.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
