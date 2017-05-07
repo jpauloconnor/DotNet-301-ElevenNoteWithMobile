@@ -28,7 +28,6 @@ namespace ElevenNote.Web.Controllers
 
         public AccountController()
         {
-            //context = new ApplicationDbContext();
 
         }
 
@@ -67,6 +66,7 @@ namespace ElevenNote.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            CreateAdminIfNeeded();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -80,7 +80,7 @@ namespace ElevenNote.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                CreateAdminIfNeeded();
+             
                 return View(model);
             }
 
