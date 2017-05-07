@@ -52,6 +52,6 @@ namespace ElevenNote.Web.Models
         [Key]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
-        public List<UserRole> colUserRole { get; set; }
+        public List<UserRole> UserRole { get; set; }
     }
 }
