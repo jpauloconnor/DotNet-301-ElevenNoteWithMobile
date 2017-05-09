@@ -9,7 +9,7 @@ namespace ElevenNote.Web.Models
 
     public class UserRoles
     {
-        [Key]
+
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
     }
@@ -17,7 +17,7 @@ namespace ElevenNote.Web.Models
 
     public class UserRole
     {
-        [Key]
+
         [Display(Name = "User Name")]
         public string UserName { get; set; }
         [Display(Name = "Role Name")]
@@ -27,7 +27,7 @@ namespace ElevenNote.Web.Models
 
     public class ExpandedUser
     {
-        [Key]
+       
         [Display(Name = "User Name")]
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -41,7 +41,7 @@ namespace ElevenNote.Web.Models
 
     public class Role
     {
-        [Key]
+
         public string Id { get; set; }
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
@@ -49,7 +49,7 @@ namespace ElevenNote.Web.Models
 
     public class UserAndRoles
     {
-        [Key]
+
         [Display(Name = "User Name")]
         public string UserName { get; set; }
         public List<UserRole> UserRole { get; set; }

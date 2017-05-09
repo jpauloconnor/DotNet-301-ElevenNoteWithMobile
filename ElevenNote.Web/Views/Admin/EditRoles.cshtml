@@ -1,29 +1,56 @@
 ﻿@model ElevenNote.Web.Models.UserAndRoles
 
 @{
-    ViewBag.Title = "EditRoles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>EditRoles</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>UserAndRoles</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.UserName)
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+    <br />
+    <br />
+    @Html.ValidationSummary(true,
+    "",
+    new { @class = "text-danger" })
+    <div>
+        @Html.ActionLink("Back",
+       "EditUser",
+       new { UserName = Model.UserName },
+       new { @class = "btn btn-default" })
+        <input type="submit" value="Add Role" class="btn btn-default" />
+        @Html.DropDownList("AddRole")
     </div>
-}
+    <br />
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <table class="table">
+        <tr>
+            <th>
+                Existing Roles:
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.UserRole)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @if (!((Model.UserName.ToLower() ==
+                        this.User.Identity.Name.ToLower()) &&
+                        item.RoleName == "Administrator") &&
+                        item.RoleName != "No Roles Found")
+                    {
+                        @Html.ActionLink("Delete", "DeleteRole",
+                       new { UserName = item.UserName, RoleName = item.RoleName },
+                        new
+                        {
+                            onclick =
+                        "return confirm('Are you sure you wish to delete this role?');"
+                        })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
